@@ -1,0 +1,32 @@
+.col1 {
+  margin: 0rem auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+  text-align: center;
+}
+.col1 img {
+  width: 350px;
+  height: 350px;
+  object-fit: fill;
+  border-radius: 4px;
+}
+.special-info {
+  width: 100%;
+}
+.seasons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.col1 h4 {
+  margin: 1rem 0;
+  font-weight: 500;
+}
+.seasons p {
+  margin: 0 3px;
+  font-weight: 500;
+}

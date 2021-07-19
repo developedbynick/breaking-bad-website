@@ -1,0 +1,26 @@
+.cl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  place-items: center;
+}
+.cl-container {
+  width: 90%;
+  margin: 2rem auto;
+}
+.cl-container h1 {
+  margin: 1.6rem 0;
+  text-transform: capitalize;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .cl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cl-container h1 {
+    text-align: center;
+  }
+}
