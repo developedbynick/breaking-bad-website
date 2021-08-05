@@ -1,6 +1,6 @@
 import "./App.css";
 // Configuration options and hooks
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { baseurl, charactersEndpoint } from "./config";
 import useFetch from "./hooks/useFetch";
 // components
@@ -9,17 +9,19 @@ import CharacterList from "./components/CharacterList";
 import Error from "./components/Error";
 import Loading from "./components/Loading";
 import characterPage from "./components/CharacterPage";
-import Error404 from "./components/404.js";
+import Error404 from "./components/404";
 // Routing components
 import { Switch, Route } from "react-router-dom";
+import { BsArrowBarUp } from "react-icons/bs";
 function App() {
-  const [limit] = useState(0);
+  const [limit] = useState(999);
+  const [isTopOfPage, setIsTopOfPage] = useState(true);
   const [characters, isLoading, error] = useFetch(
-    `${baseurl}${charactersEndpoint}${limit || 100}`
+    `${baseurl}${charactersEndpoint}${limit}`
   );
   const [filteredCharacters, setFilteredCharacters] = useState([...characters]);
   const [value, setValue] = useState("");
-  console.log(value);
+
   // Functions
   const filterCharacters = (query) => {
     query = query.trim().toLowerCase(); // Do not mutate functional parameters recklessly!
@@ -32,6 +34,7 @@ function App() {
     // 2) Setting the filtered characters.
     setFilteredCharacters(filteredCharacters);
   };
+
   useEffect(() => {
     setFilteredCharacters(characters);
   }, [characters]);
@@ -50,10 +53,26 @@ function App() {
             value={value}
             setValue={setValue}
             filterCharacters={filterCharacters}
+            setIsTopOfPage={setIsTopOfPage}
           />
           <div className="cl-container">
             <h1>Breaking Bad cast</h1>
             <CharacterList characters={filteredCharacters} />
+
+            {!isTopOfPage && (
+              <div className="back-to-top visible">
+                <button
+                  onClick={() => {
+                    window.scrollTo({
+                      behavior: "smooth",
+                      top: 0,
+                    });
+                  }}
+                >
+                  <BsArrowBarUp />
+                </button>
+              </div>
+            )}
           </div>
         </Route>
         <Route path="/character/:id" exact component={characterPage} />
@@ -65,4 +84,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);
