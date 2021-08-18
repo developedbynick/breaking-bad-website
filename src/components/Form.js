@@ -5,7 +5,7 @@ function Form(props) {
   const headerRef = useRef(null);
   const [isHeaderStillVisible, setIsHeaderStillVisible] = useState(true);
   const onInputChange = (e) => {
-    props.setValue(e.target.value.trim());
+    props.setValue(e.target.value);
     props.filterCharacters(e.target.value.trim().toLowerCase());
   };
   useEffect(() => {
