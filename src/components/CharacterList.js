@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import "./css/characterList.css";
 function CharacterList({ characters, query }) {
   const [page, setPage] = useState(1);
-  const [limit] = useState(18);
+  const [limit] = useState(9);
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
   const numPages = Math.floor(characters.length / limit) || 1;
