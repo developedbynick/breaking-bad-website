@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 function Form(props) {
-  console.log(props);
   const headerRef = useRef(null);
   const [isHeaderStillVisible, setIsHeaderStillVisible] = useState(true);
   const onInputChange = (e) => {
