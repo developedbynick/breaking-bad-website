@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Character from "./Character";
 import Pagination from "./Pagination";
 import "./css/characterList.css";
@@ -9,6 +9,12 @@ function CharacterList({ characters }) {
   const endIndex = page * limit;
   const numPages = Math.floor(characters.length / limit);
   const paginatedCharacters = characters.slice(startIndex, endIndex);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [page]);
   return (
     <React.Fragment>
       <div className="character-list cl">
