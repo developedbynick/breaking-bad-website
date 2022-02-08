@@ -145,12 +145,29 @@ div.btn-container button {
 .paginated-container button.active {
   background-color: #6a7ca3;
 }
+.character-list.not-found {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.character-list-not-found {
+  text-align: center;
+  text-align: center;
+}
 @keyframes animateBackToTop {
   from {
     transform: scale(0);
   }
   to {
     transform: scale(1);
+  }
+}
+@media screen and (max-width: 542px) {
+  .paginated-container .inner-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.5rem;
   }
 }
 @media screen and (max-width: 1020px) {

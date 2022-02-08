@@ -57,7 +57,11 @@ function App() {
           />
           <div className="cl-container">
             <h1>Breaking Bad cast</h1>
-            <CharacterList characters={filteredCharacters} />
+            <CharacterList
+              allCharacters={characters}
+              characters={filteredCharacters}
+              setFilteredCharacters={setFilteredCharacters}
+            />
 
             {!isTopOfPage && (
               <div className="back-to-top visible">

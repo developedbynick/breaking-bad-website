@@ -4,22 +4,33 @@ import Pagination from "./Pagination";
 import "./css/characterList.css";
 function CharacterList({ characters }) {
   const [page, setPage] = useState(1);
-  const [limit] = useState(12);
+  const [limit] = useState(18);
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
-  const numPages = Math.floor(characters.length / limit);
-  const paginatedCharacters = characters.slice(startIndex, endIndex);
+  const numPages = Math.floor(characters.length / limit) || 1;
+  const charactersToBeDisplayed = characters.slice(startIndex, endIndex);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, [page]);
+  useEffect(() => {
+    setPage(1);
+  }, [characters]);
+  if (characters.length === 0) {
+    return (
+      <div className="character-list cl not-found">
+        <h2 className="character-list-not-found">No Results Found</h2>
+      </div>
+    );
+  }
   return (
     <React.Fragment>
       <div className="character-list cl">
-        {paginatedCharacters.map((c) => (
-          <Character character={c} key={c.char_id} />
+        {charactersToBeDisplayed.map((character) => (
+          <Character character={character} key={character.char_id} />
         ))}
       </div>
       <Pagination page={page} setPage={setPage} numPages={numPages} />
