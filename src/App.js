@@ -21,7 +21,7 @@ function App() {
   );
   const [filteredCharacters, setFilteredCharacters] = useState([...characters]);
   const [value, setValue] = useState("");
-
+  console.log(value);
   // Functions
   const filterCharacters = (query) => {
     query = query.trim().toLowerCase(); // Do not mutate functional parameters recklessly!
@@ -61,6 +61,7 @@ function App() {
               allCharacters={characters}
               characters={filteredCharacters}
               setFilteredCharacters={setFilteredCharacters}
+              query={value}
             />
 
             {!isTopOfPage && (

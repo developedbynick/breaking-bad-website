@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Character from "./Character";
 import Pagination from "./Pagination";
 import "./css/characterList.css";
-function CharacterList({ characters }) {
+function CharacterList({ characters, query }) {
   const [page, setPage] = useState(1);
   const [limit] = useState(18);
   const startIndex = (page - 1) * limit;
@@ -20,9 +20,13 @@ function CharacterList({ characters }) {
     setPage(1);
   }, [characters]);
   if (characters.length === 0) {
+    const isQueryGreaterThan25Chars = query.length > 25;
     return (
       <div className="character-list cl not-found">
-        <h2 className="character-list-not-found">No Results Found</h2>
+        <h2 className="character-list-not-found">
+          No Results Found for "{query.substr(0, 25)}
+          {isQueryGreaterThan25Chars ? "..." : ""}"
+        </h2>
       </div>
     );
   }
